@@ -1,0 +1,189 @@
+Berikut rangkuman materi dari seluruh file (T03–T07) yang kamu unggah — disusun secara ringkas, sistematis, dan mudah dipahami 👇
+
+🧩 T03 – State dan Props
+1. State
+
+Pengertian: Objek yang menyimpan data dinamis di dalam komponen React.
+
+Fungsi: Menyimpan data yang berubah-ubah dan memicu re-render komponen.
+
+Cara Menggunakan:
+
+Pada class component: this.state dan this.setState()
+
+Pada function component: menggunakan useState()
+
+Contoh:
+
+const [count, setCount] = useState(0);
+
+2. Props
+
+Pengertian: Mekanisme untuk mengirim data dari parent component ke child component.
+
+Bersifat: Read-only (tidak bisa diubah oleh komponen penerima).
+
+Contoh:
+
+<Welcome name="John" />
+function Welcome(props) {
+  return <h1>Hello, {props.name}</h1>;
+}
+
+3. Form Handling
+
+Menggunakan controlled components agar nilai input dikontrol melalui state.
+
+Kombinasi state + props digunakan untuk form dinamis dan data yang terhubung antar komponen.
+
+🔁 T04 – Lifecycle dan Hooks
+1. React Lifecycle (Komponen Kelas)
+
+Tahapan siklus hidup komponen:
+
+Mounting: constructor(), render(), componentDidMount()
+
+Updating: shouldComponentUpdate(), render(), componentDidUpdate()
+
+Unmounting: componentWillUnmount()
+
+2. React Hooks (Komponen Fungsional)
+
+Hooks menggantikan fungsi lifecycle dalam komponen kelas.
+
+Hooks Umum:
+
+useState: Mengelola nilai state.
+
+useEffect: Menangani efek samping (misalnya ambil data, ubah DOM, timer).
+
+useContext, useRef, useReducer, useCallback, useMemo: Untuk konteks, referensi DOM, logika kompleks, optimasi fungsi, dan perhitungan.
+
+Contoh:
+useEffect(() => {
+  console.log("Mount sekali");
+}, []); // array kosong = hanya saat pertama render
+
+🌐 T05 – Routing dengan React Router
+1. Pengertian
+
+Routing mengatur navigasi antar halaman di aplikasi React.
+
+Memungkinkan URL merepresentasikan konten tertentu.
+
+2. React Router
+
+Instalasi: npm install react-router-dom
+
+Komponen utama:
+
+<BrowserRouter>: Pembungkus utama aplikasi.
+
+<Route>: Mendefinisikan jalur dan komponen.
+
+<Link>: Tautan antar halaman.
+
+<Navigate>: Pindah halaman secara programatik.
+
+3. Routing Lanjutan
+
+Routing dengan Parameter: menggunakan useParams()
+
+Nested Routing: halaman bersarang di dalam rute lain.
+
+Fitur Lanjutan: Redirect, NotFound, Guard Navigation, Lazy Loading.
+
+🎨 T06 – Styling dalam React JS
+1. Pentingnya Styling
+
+Menjaga kode terstruktur, mudah dibaca, dan konsisten antar komponen.
+
+2. Teknik Styling di React
+a. Inline Styles
+<h1 style={{ color: "red", fontSize: 20 }}>Hello</h1>
+
+
+✅ Dinamis, tidak konflik antar komponen.
+
+❌ Tidak mendukung pseudo-class atau media query.
+
+b. Regular CSS
+
+File .css terpisah dan di-import.
+
+✅ Familiar, fleksibel, dan mendukung animasi serta responsif.
+
+❌ Rawan konflik nama dan sulit diisolasi dalam proyek besar.
+
+c. CSS Modules
+
+File: Nama.module.css
+
+Import dan panggil:
+
+import styles from './App.module.css';
+<div className={styles.container}></div>
+
+
+✅ Isolasi style, reusable, maintainable.
+
+❌ Bisa menambah ukuran file dan kompleks jika terlalu banyak modul.
+
+d. Styled Components
+
+Instalasi: npm install styled-components
+
+Menulis CSS langsung dalam JavaScript:
+
+const Button = styled.button`
+  background: blue;
+  color: white;
+`;
+
+
+✅ Tidak ada konflik nama, bisa gunakan props & pseudo-class.
+
+✅ Bisa memperluas style dan ubah elemen dengan as="".
+
+❌ Menambah overhead JS dan memerlukan pustaka tambahan.
+
+🧱 T07 – Styling dengan Material UI
+1. Pengenalan Material UI
+
+Framework komponen UI berbasis Material Design dari Google.
+
+Instalasi:
+
+npm install @mui/material @emotion/react @emotion/styled
+
+2. Keunggulan
+
+Tampilan responsif dan estetis.
+
+Konsistensi antarkomponen.
+
+Mudah dikustomisasi melalui tema (createTheme).
+
+Komunitas besar dan dokumentasi lengkap.
+
+3. Komponen Utama
+Komponen	Fungsi
+Button	Tombol interaksi
+Input / Select	Input data pengguna
+Card / List	Tampilan konten
+Dialog / Alert	Informasi pop-up
+Grid	Tata letak responsif
+Typography / Icon	Teks dan ikon visual
+4. Grid System
+
+container untuk baris, item untuk kolom.
+
+Properti ukuran: xs, sm, md, lg, xl.
+
+🧠 Kesimpulan Umum
+Topik	Inti Materi	Tujuan
+State & Props	Pengelolaan data internal dan antar komponen	Membangun UI dinamis
+Lifecycle & Hooks	Mengontrol perilaku komponen dan efek samping	Mengoptimalkan kinerja
+Routing	Navigasi antar halaman dalam aplikasi SPA	Struktur aplikasi lebih rapi
+Styling React	Mengatur tampilan komponen secara modular	UI konsisten dan terorganisir
+Material UI	Framework UI siap pakai	Desain modern dan cepat dikembangkan
