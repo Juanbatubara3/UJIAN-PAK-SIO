@@ -1,0 +1,137 @@
+Bagian Pilihan Ganda
+
+✅ c. D:\myApp\tutor-react> npm start
+→ Menjalankan aplikasi React dilakukan dari direktori root project.
+
+✅ d. Sebuah array yang berisi dua elemen, yaitu nilai state saat ini dan fungsi untuk mengubah nilai state tersebut.
+
+✅ b. setLoading(true)
+→ Fungsi setter dari useState digunakan untuk mengubah nilai state.
+
+✅ d. Semua jawaban di atas salah.
+→ Karena ketiga poin (a–c) justru merupakan penggunaan state yang benar.
+
+✅ c. Memformat nama depan dan belakang menjadi satu string.
+→ Fungsi formatName menggabungkan firstName dan lastName.
+
+✅ b. Akan ditampilkan teks "Halo, Budi Mahardika!" di dalam tag <h1>.
+
+✅ c. Akan ditampilkan "Halo TI-A, Gilbert! Kamu berusia 19 tahun."
+
+✅ b. Akan ditampilkan "Halo, Gilbert! Selamat datang!"
+→ Karena age = 19, maka memenuhi kondisi age < 20.
+
+9–10.
+Kesalahan kode pada contoh komponen kalkulator:
+
+function kalkulator({ props }) {
+  const [count, setCount] = useState(true); // ❌ salah, seharusnya useState(0)
+  ...
+  <button onClick={decrement}>Tambah 1</button> // ❌ 'decrement' tidak didefinisikan
+}
+export default MyKalkulator; // ❌ nama tidak konsisten
+
+
+Perbaikan:
+
+import React, { useState, useEffect } from 'react';
+
+function MyKalkulator() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setCount(count + 1);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [count]);
+
+  const increment = () => setCount(count + 1);
+  const reset = () => setCount(0);
+
+  return (
+    <div>
+      <p style={{ color: count % 2 === 0 ? 'red' : 'blue' }}>Hasil: {count}</p>
+      <button onClick={increment}>Tambah 1</button>
+      <button onClick={reset}>Reset</button>
+    </div>
+  );
+}
+
+export default MyKalkulator;
+
+✍️ Bagian Esai
+1️⃣ Komponen MyCounter
+import React, { useState } from 'react';
+
+function MyCounter() {
+  const [count, setCount] = useState(0);
+
+  const handleTambah = () => {
+    setCount(prev => (prev >= 5 ? 0 : prev + 1));
+  };
+
+  const handleReset = () => {
+    setCount(0);
+  };
+
+  return (
+    <div style={{ textAlign: 'center', marginTop: '30px' }}>
+      <h2>Nilai: {count}</h2>
+      <button onClick={handleTambah}>Tambah</button>
+      <button onClick={handleReset}>Reset</button>
+    </div>
+  );
+}
+
+export default MyCounter;
+
+2️⃣ Komponen DataSiswa
+import React, { useState } from 'react';
+
+function DataSiswa() {
+  const [siswa] = useState([
+    { name: 'Ucok Doe', age: 30 },
+    { name: 'Butet Smith', age: 25 },
+  ]);
+
+  return (
+    <div style={{ padding: '20px', fontFamily: 'sans-serif' }}>
+      <h3>Data Siswa</h3>
+      <ul style={{ listStyle: 'none', padding: 0 }}>
+        {siswa.map((item, index) => (
+          <li key={index} style={{ marginBottom: '10px', color: '#333' }}>
+            <p>Nama: {item.name}</p>
+            <p>Umur: {item.age} tahun</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default DataSiswa;
+
+3️⃣ Komponen WelcomePage
+import React, { useState, useEffect } from 'react';
+
+function WelcomePage() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [message, setMessage] = useState('');
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+      setMessage('Selamat Datang di Halaman Utama!');
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <div style={{ textAlign: 'center', marginTop: '50px' }}>
+      {isLoading ? <h2>Loading...</h2> : <h2>{message}</h2>}
+    </div>
+  );
+}
+
+export default WelcomePage;
